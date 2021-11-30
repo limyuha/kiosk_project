@@ -15,14 +15,14 @@ public class MenuDao {
 	
 	public MenuDao() {
 		
-		this.template = ConstantTemplate.template; //CONSTNA °øÀ¯µÈ Template¸¦ »ç¿ëÇÒ ¼öÀÖÀ½
+		this.template = ConstantTemplate.template; //CONSTNA ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Templateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	public ArrayList<MenuDto> main_menulist() {
 		ArrayList<MenuDto> dtos = null;
 		
 		//String sql = "select * from menu";
-		String sql = "select menu.seq, menu_img.seq, menu.name, menu_img.img from menu, menu_img where menu.seq = menu_img.menu_seq";
+		String sql = "select menu.name, menu.price, menu_img.img from menu, menu_img where menu.seq = menu_img.menu_seq";
 		dtos = (ArrayList<MenuDto>) template.query(sql, new BeanPropertyRowMapper<MenuDto>(MenuDto.class));
 		
 		return dtos;
