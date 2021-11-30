@@ -10,27 +10,27 @@ import yuhan.kiosk.menu.service.IMenuService;
 import yuhan.kiosk.menu.service.MenuListService;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 
-@Controller //ÄÁÆ®·Ñ·¯ ¼±¾ğ
+@Controller //ì»¨íŠ¸ë¡¤ëŸ¬ ì„ ì–¸
 public class MenuController {
 	
-	IMenuService service = null; // ÀÎÅÍÆäÀÌ½º ¼±¾ğ
-	public JdbcTemplate template; //¸ğµç °´Ã¼¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖ°Ô ÅÛÇÃ¸´ ¼±¾ğ
+	IMenuService service = null; //ì¸í„°í˜ì´ìŠ¤ ì„ ì–¸
+	public JdbcTemplate template; //ëª¨ë“  ê°ì²´ì—ì„œ ì´ìš©í•  ìˆ˜ ìˆê²Œ í…œí”Œë¦¿ ì„ ì–¸
 	
-	@Autowired //°´Ã¼¸¦ ÀÚµ¿À¸·Î ÀÌ¿ë
+	@Autowired //ê°ì²´ë¥¼ ìë™ìœ¼ë¡œ ì´ìš©
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 		
-		//¸ğµç Å¬·¡½º¿¡¼­ »ç¿ë
-		ConstantTemplate.template = this.template; //this.templateÀ» ConstantTemplate.template¿¡ ³Ö¾î¼­ »ç¿ëÇÏ°Ú´Ù(¸Ş¸ğ¸®¿¡ »óÁÖÇØ¼­ »ç¿ë)
+		//ëª¨ë“  í´ë˜ìŠ¤ì—ì„œ ì‚¬ìš©
+		ConstantTemplate.template = this.template; //this.templateì„ ConstantTemplate.templateì— ë„£ì–´ì„œ ì‚¬ìš©í•˜ê² ë‹¤(ë©”ëª¨ë¦¬ì— ìƒì£¼í•´ì„œ ì‚¬ìš©)
 	}
 	
-	@RequestMapping("/main") //¸ÅÇÎ
+	@RequestMapping("/main") //ë§¤í•‘
 	public String main_menulist(Model model) {
 		
 		service = new MenuListService();
 		service.execute(model);
 		
-		return "main";
+		return "main_body";
 	}
 	
 	

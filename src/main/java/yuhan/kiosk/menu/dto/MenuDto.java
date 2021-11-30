@@ -2,6 +2,7 @@ package yuhan.kiosk.menu.dto;
 
 public class MenuDto {
 	
+	//menu table
 	private int seq;
 	private int category;
 	private int sale_num;
@@ -16,6 +17,7 @@ public class MenuDto {
 	private String allergy;
 	private String context;
 	
+	//menu_img table
 	private int menu_seq;
 	private String img;
 	
@@ -23,8 +25,9 @@ public class MenuDto {
 		
 	}
 	
-	public MenuDto(int seq, int category, int sale_num, String name, int price, int provid, int menu_seq, String img,
-			int saturated_fat, int protein, int sodium, int sugar, int caffeine, String allergy, String context) {
+	public MenuDto(int seq, int category, int sale_num, String name, int price, int provid, int saturated_fat, 
+			int protein, int sodium, int sugar, int caffeine, String allergy, String context,
+			int menu_seq, String img) {
 		
 		this.seq = seq;
 		this.category = category;
