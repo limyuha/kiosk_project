@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String target = request.getParameter("target");
-	if (target == null) {
-		target = "main_body";
-	}
-	String targetpage = target + ".jsp";
-	
 	java.util.Date today = new java.util.Date(); //현재 날짜(변하는 값) //css수정 시 빠르게 보려고
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +25,21 @@
 </head>
 <body>
 	<jsp:include page="top.jsp" flush="false"/>
+	
 
-	<jsp:include page="<%=targetpage%>" flush="false"/>
+<div class="menu_box">
+	<ul>
+		<c:forEach items="${menulist}" var="dto">
+			<li>
+				<div>
+					<img src="${dto.img}">
+				</div>
+				<p>${dto.name}</p>
+				<p>${dto.price} 원</p>
+			</li>
+		</c:forEach>
+	</ul>
+</div>
+	
 </body>
 </html>

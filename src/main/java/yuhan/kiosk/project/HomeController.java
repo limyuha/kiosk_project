@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,20 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	IMenuService service = null; // ÀÎÅÍÆäÀÌ½º ¼±¾ð
-	public JdbcTemplate template; //¸ðµç °´Ã¼¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖ°Ô ÅÛÇÃ¸´ ¼±¾ð
+	IMenuService service = null; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public JdbcTemplate template; //ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
-	@Autowired //°´Ã¼¸¦ ÀÚµ¿À¸·Î ÀÌ¿ë
+	@Autowired //ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 		
-		//¸ðµç Å¬·¡½º¿¡¼­ »ç¿ë
-		ConstantTemplate.template = this.template; //this.templateÀ» ConstantTemplate.template¿¡ ³Ö¾î¼­ »ç¿ëÇÏ°Ú´Ù(¸Þ¸ð¸®¿¡ »óÁÖÇØ¼­ »ç¿ë)
+		//ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		ConstantTemplate.template = this.template; //this.templateï¿½ï¿½ ConstantTemplate.templateï¿½ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½Ï°Ú´ï¿½(ï¿½Þ¸ð¸®¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½)
 	}
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
-	 */
+	
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -49,6 +51,28 @@ public class HomeController {
 		service.execute(model);
 		
 		return "main";
+	}
+	 */
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model, HttpServletRequest request) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		model.addAttribute("request", request);
+		
+		String target = "";
+		if(request.getParameter("target") == null) { 
+			target = "menu";
+		} else {
+			target = request.getParameter("target");
+		}
+		
+		service = new MenuListService();
+		service.execute(model);
+		
+		String expage = "main";
+
+		return expage;
 	}
 
 }
