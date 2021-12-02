@@ -61,11 +61,6 @@ public class HomeController {
 		model.addAttribute("request", request);
 		
 		String target = "";
-		if(request.getParameter("target") == null) { 
-			target = "menu";
-		} else {
-			target = request.getParameter("target");
-		}
 		
 		service = new MenuListService();
 		service.execute(model);

@@ -4,11 +4,13 @@
 	<ul>
 		<c:forEach items="${menulist}" var="dto">
 			<li>
-				<div>
-					<img src="${dto.img}">
-				</div>
-				<p>${dto.name}</p>
-				<p>${dto.price} 원</p>
+				<a href="drink_detail?menu_seq=${dto.seq}">
+					<div>
+						<img src="${dto.img}">
+					</div>
+					<p>${dto.name}</p>
+					<p>${dto.price} 원</p>
+				</a>
 			</li>
 		</c:forEach>
 	</ul>

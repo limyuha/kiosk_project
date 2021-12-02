@@ -1,7 +1,6 @@
 package yuhan.kiosk.menu.dao;
 
 import java.util.ArrayList;
-import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +10,7 @@ import yuhan.kiosk.mvc.util.ConstantTemplate;
 
 public class MenuDao {
 	JdbcTemplate template;
-	DataSource dataSource;
+	//DataSource dataSource;
 	
 	public MenuDao() {
 		
@@ -19,19 +18,36 @@ public class MenuDao {
 	}
 	
 	public ArrayList<MenuDto> main_menulist(String target) {
+		
 		ArrayList<MenuDto> dtos = null;
 		
-		String sql = "select menu.name, menu.price, menu_img.img from menu, menu_img where menu.seq = menu_img.menu_seq"; //target값 없으면 타게끔
+		String sql = "select menu.seq, menu.name, menu.price, menu_img.img_url from menu, menu_img where menu.seq = menu_img.menu_seq"; //target값 없으면 타게끔
 		
 		//String target = "";
 		//String sql = "select * from menu";
 		
 		
 		if(target.equals("coffee_menu")) { // == 은 주소값(자료의 위치값) 비교, equals는 객체끼리 내용 비교
-			sql = "select menu.name, menu.price, menu_img.img from menu, menu_img where menu.category = 1 and menu.seq = menu_img.menu_seq";
+			sql = "select menu.seq, menu.name, menu.price, menu_img.img_url from menu, menu_img where menu.category = 1 and menu.seq = menu_img.menu_seq";
+		} else if (target.equals("non_coffee_menu")) {
+			sql = "select menu.seq, menu.name, menu.price, menu_img.img_url from menu, menu_img where menu.category = 2 and menu.seq = menu_img.menu_seq";
+		} else if (target.equals("dessert_menu")) {
+			sql = "select menu.seq, menu.name, menu.price, menu_img.img_url from menu, menu_img where menu.category = 3 and menu.seq = menu_img.menu_seq";
 		}
-		
+
 		dtos = (ArrayList<MenuDto>) template.query(sql, new BeanPropertyRowMapper<MenuDto>(MenuDto.class));
 		return dtos;
 	}
+
+	public MenuDto MenuDetail(final String menu_seq) {
+		
+		String sql = "select name, price, provid, saturated_fat, protein, sodium, sugar, caffeine, allergy, context, menu_img.img_url from menu, menu_img where menu.seq = menu_img.menu_seq and menu.seq = " + menu_seq;
+				
+		MenuDto dto = (MenuDto) this.template.queryForObject(sql, 
+									new BeanPropertyRowMapper<MenuDto>(MenuDto.class));
+		
+		return dto;
+	}
+	
+	
 }

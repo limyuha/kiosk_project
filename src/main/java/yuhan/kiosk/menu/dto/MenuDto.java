@@ -19,16 +19,18 @@ public class MenuDto {
 	
 	//menu_img table
 	private int menu_seq;
-	private String img;
+	private String img_url;
 	
+	//생성자 필요
 	public MenuDto() {
 		
 	}
 	
 	public MenuDto(int seq, int category, int sale_num, String name, int price, int provid, int saturated_fat, 
 			int protein, int sodium, int sugar, int caffeine, String allergy, String context,
-			int menu_seq, String img) {
+			int menu_seq, String img_url) {
 		
+		//menu table
 		this.seq = seq;
 		this.category = category;
 		this.sale_num = sale_num;
@@ -43,10 +45,12 @@ public class MenuDto {
 		this.allergy = allergy;
 		this.context = context;
 		
+		//menu_img table
 		this.menu_seq = menu_seq;
-		this.img = img;
+		this.img_url = img_url;
 	}
 
+	//menu_table
 	public int getSeq() {
 		return seq;
 	}
@@ -151,8 +155,7 @@ public class MenuDto {
 		this.context = context;
 	}
 
-	
-	
+	//menu_img table
 	public int getMenu_seq() {
 		return menu_seq;
 	}
@@ -161,11 +164,12 @@ public class MenuDto {
 		this.menu_seq = menu_seq;
 	}
 
-	public String getImg() {
-		return img;
+	public String getImg_url() {
+		return img_url;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
 	}
+
 }

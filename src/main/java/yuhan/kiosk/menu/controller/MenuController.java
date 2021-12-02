@@ -28,20 +28,13 @@ public class MenuController {
 		ConstantTemplate.template = this.template; //this.template을 ConstantTemplate.template에 넣어서 사용하겠다(메모리에 상주해서 사용)
 	}
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET) //매핑
-	public String main_menulist(Model model, HttpServletRequest request) { //, HttpServletRequest request		
-		model.addAttribute("request", request);
-		
-		String target = "";
-		if(request.getParameter("target") == null) { 
-			target = "menu";
-		} else {
-			target = request.getParameter("target");
-		}
-		
+	@RequestMapping(value = "/main", method = RequestMethod.GET) //매핑 url
+	public String main_menulist(Model model, HttpServletRequest request) { //, HttpServletRequest request 
+		//top.jsp url 받음
+		model.addAttribute("request", request); //null, coffee_menu, non_coffee_menu, dessert_menu
+	
 		service = new MenuListService();
 		service.execute(model);
-		String expage = "main";
 		
 		/*
 		if (target == "menu") {
@@ -51,6 +44,31 @@ public class MenuController {
 		}
 		*/
 		//System.out.println(target);
-		return expage;
+		return "main"; //main.jsp
 	}
+	
+	//@RequestMapping(value="/menu_detail", method = RequestMethod.GET)
+	@RequestMapping("/menu_detail")
+	public String menu_detail(Model model, HttpServletRequest request) {
+		
+		model.addAttribute("request", request); //menu.seq
+		
+		//String seq = request.getParameter("menu_seq");
+		//System.out.println(seq);
+		
+		service = new MenuDetailService();
+		service.execute(model);
+		
+		return "menu_detail";
+	}
+	
+	@RequestMapping("login")
+	public String login(Model model) {
+		
+		//service = new LoginService();
+		//service.execute(model);
+		
+		return "login";
+	}
+
 }
