@@ -1,4 +1,4 @@
-package yuhan.kiosk.menu.dto;
+package yuhan.kiosk.dto;
 
 public class MenuDto {
 	

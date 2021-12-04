@@ -1,4 +1,4 @@
-package yuhan.kiosk.menu.controller;
+package yuhan.kiosk.menu.service;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import yuhan.kiosk.menu.dao.MenuDao;
-import yuhan.kiosk.menu.dto.MenuDto;
-import yuhan.kiosk.menu.service.IMenuService;
+import yuhan.kiosk.dao.MenuDao;
+import yuhan.kiosk.dto.MenuDto;
+import yuhan.kiosk.mvc.util.IKioskService;
 
-public class MenuDetailService implements IMenuService {
+public class MenuDetailService implements IKioskService {
 
 	@Override
 	public void execute(Model model) {

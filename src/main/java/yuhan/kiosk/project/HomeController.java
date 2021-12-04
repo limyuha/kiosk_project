@@ -15,9 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import yuhan.kiosk.menu.service.IMenuService;
 import yuhan.kiosk.menu.service.MenuListService;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
+import yuhan.kiosk.mvc.util.IKioskService;
 
 /**
  * Handles requests for the application home page.
@@ -27,7 +27,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	IMenuService service = null; // �������̽� ����
+	IKioskService service = null; // �������̽� ����
 	public JdbcTemplate template; //��� ��ü���� ����� �� �ְ� ���ø� ����
 	
 	@Autowired //��ü�� �ڵ����� �̿�

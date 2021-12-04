@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%
 	java.util.Date today = new java.util.Date(); //현재 날짜(변하는 값) //css수정 시 빠르게 보려고
+	
+	String id = (String)session.getAttribute("id");  // 세션 값 가져오기
 %>
 <!DOCTYPE html>
 <html>
@@ -20,15 +23,27 @@
 	<!-- 아이콘 css -->
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	
+	<!-- 자바스크립트 이벤트 사용시 필요한 소스 -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <div class="top_box">
-	<ul>
-		<li><a href="main">전체</a></li>
-		<li><a href="main?target=coffee_menu">Coffee</a></li>
-		<li><a href="main?target=non_coffee_menu">Non-Coffee</a></li>
-		<li><a href="main?target=dessert_menu">Dessert</a></li>
-	</ul>
-	
-	<spen><a href="login"><i class="fas fa-sign-in-alt"></i> LOGIN</a></spen>
+	<div class="gnb">
+		<ul>
+			<li><a href="main">전체</a></li>
+			<li><a href="main?target=coffee_menu">Coffee</a></li>
+			<li><a href="main?target=non_coffee_menu">Non-Coffee</a></li>
+			<li><a href="main?target=dessert_menu">Dessert</a></li>
+		</ul>
+		<c:choose>
+			<c:when test="${id == null}"> <!-- if -->
+				<p><a href="login"><i class="fas fa-sign-in-alt"></i> LOGIN</a></p>
+			</c:when>
+			<c:otherwise> <!-- else -->
+				
+				<p><a href="cart">장바구니</a> | <%= id%>님 | <a href="logout"> LOGOUT</a></p>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </div>

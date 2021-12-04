@@ -1,4 +1,4 @@
-package yuhan.kiosk.menu.controller;
+package yuhan.kiosk.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import yuhan.kiosk.menu.service.IMenuService;
+import yuhan.kiosk.menu.service.MenuDetailService;
 import yuhan.kiosk.menu.service.MenuListService;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
+import yuhan.kiosk.mvc.util.IKioskService;
 
 @Controller //컨트롤러 선언
 public class MenuController {
 	
-	IMenuService service = null; //인터페이스 선언
+	IKioskService service = null; //인터페이스 선언
 	public JdbcTemplate template; //모든 객체에서 이용할 수 있게 템플릿 선언
 	
 	@Autowired //객체를 자동으로 이용
@@ -29,7 +30,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET) //매핑 url
-	public String main_menulist(Model model, HttpServletRequest request) { //, HttpServletRequest request 
+	public String menu_list(Model model, HttpServletRequest request) { //, HttpServletRequest request 
 		//top.jsp url 받음
 		model.addAttribute("request", request); //null, coffee_menu, non_coffee_menu, dessert_menu
 	
@@ -44,6 +45,8 @@ public class MenuController {
 		}
 		*/
 		//System.out.println(target);
+		
+		//System.out.println(request.getParameter("test"));
 		return "main"; //main.jsp
 	}
 	
@@ -53,22 +56,11 @@ public class MenuController {
 		
 		model.addAttribute("request", request); //menu.seq
 		
-		//String seq = request.getParameter("menu_seq");
-		//System.out.println(seq);
-		
 		service = new MenuDetailService();
 		service.execute(model);
 		
 		return "menu_detail";
 	}
 	
-	@RequestMapping("login")
-	public String login(Model model) {
-		
-		//service = new LoginService();
-		//service.execute(model);
-		
-		return "login";
-	}
 
 }

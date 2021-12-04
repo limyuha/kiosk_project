@@ -1,11 +1,11 @@
-package yuhan.kiosk.menu.dao;
+package yuhan.kiosk.dao;
 
 import java.util.ArrayList;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import yuhan.kiosk.menu.dto.MenuDto;
+import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 
 public class MenuDao {
@@ -17,7 +17,7 @@ public class MenuDao {
 		this.template = ConstantTemplate.template; //CONSTNA ������ Template�� ����� ������
 	}
 	
-	public ArrayList<MenuDto> main_menulist(String target) {
+	public ArrayList<MenuDto> MenuList(String target) {
 		
 		ArrayList<MenuDto> dtos = null;
 		

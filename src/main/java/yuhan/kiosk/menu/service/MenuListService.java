@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import yuhan.kiosk.menu.dao.MenuDao;
-import yuhan.kiosk.menu.dto.MenuDto;
+import yuhan.kiosk.dao.MenuDao;
+import yuhan.kiosk.dto.MenuDto;
+import yuhan.kiosk.mvc.util.IKioskService;
 
 
-public class MenuListService implements IMenuService {
+public class MenuListService implements IKioskService {
 
 	@Override
 	public void execute(Model model) {
@@ -26,7 +27,7 @@ public class MenuListService implements IMenuService {
 		
 		MenuDao dao = new MenuDao();
 		//ArrayList<MenuDto> dtos = dao.main_menulist();
-		ArrayList<MenuDto> dtos = dao.main_menulist(target);
+		ArrayList<MenuDto> dtos = dao.MenuList(target);
 		
 		model.addAttribute("menulist", dtos);
 	}

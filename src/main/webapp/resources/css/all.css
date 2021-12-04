@@ -1,5 +1,6 @@
 @charset "UTF-8";
-body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, spen, li{font-family: 'Noto Sans KR', sans-serif;}
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, span, li{font-family: 'Noto Sans KR', sans-serif;}
+
 
 .width_1650{width:1650px;}
 .width_1600{width:1600px;}
@@ -8,19 +9,33 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, spen, li{font-famil
 .width_1200{width:1200px;}
 .width_1000{width:1000px;}
 
-
-.top_box{margin:0 auto; height:80px; position:relative; background:#f6f5ef; margin-bottom:40px;}
+/*
+.top_box{margin:0 auto; height:80px; position:relative; background:#f6f5ef; margin-bottom:40px; position:relative;}
 .top_box ul{line-height: 80px; text-align:center;} 
 .top_box ul li{display:inline; padding:0 25px;}
 .top_box ul li a{color:black; font-weight:bold; font-size:17px;}
-.top_box spen{position:absolute; top:27px; right:344px;}
+.top_box spen{position:absolute; top:27px; right:369px;}
+.top_box spen a{color:black;}
+*/
 
+.top_box{width:100%;height:80px;background:#f6f5ef; margin-bottom:40px;text-align:center;}
+.top_box .gnb{width:950px;margin:0 auto;line-height:80px;height:80px;position:relative;}
+.top_box .gnb ul{display:inline-block;height:inherit;} 
+.top_box .gnb ul li{float:left;height:inherit;padding:0 25px;}
+.top_box .gnb ul li a{color:black; font-weight:bold; font-size:17px;}
+.top_box .gnb p{position:absolute; top:13px; right:0px; line-height:0px; font-size:15px;}
+.top_box .gnb p a{color:black;}
+
+.menu_box{width:100%;}
 .menu_box ul{margin:0 auto; width:950px;}
 .menu_box ul li{width:200px; height:248px; float:left; margin-right:50px; margin-bottom:20px; text-align:center;}
-.menu_box ul li:nth-child(4), .menu_box ul li:nth-child(8), .menu_box ul li:nth-child(12),
-.menu_box ul li:nth-child(16), .menu_box ul li:nth-child(20), .menu_box ul li:nth-child(24) {margin-right:0px; margin-bottom:0px;}
-.menu_box ul li div{width:200px; height:200px;}
-.menu_box ul li div img{width:100%; height:100%;}
+/*.menu_box ul li:nth-child(4), .menu_box ul li:nth-child(8), .menu_box ul li:nth-child(12),
+.menu_box ul li:nth-child(16), .menu_box ul li:nth-child(20), .menu_box ul li:nth-child(24) {margin-right:0px; margin-bottom:0px;}*/
+.menu_box ul li:nth-child(4n+0) {margin-right:0px; margin-bottom:0px;} /*4배수*/
+.menu_box ul li a{color:black;}
+.menu_box ul li a div{width:200px; height:200px;}
+.menu_box ul li a div img{width:100%; height:100%;}
+.menu_box ul::after{display:block;content:'';clear:both;}
 
 .menu_detail{clear:both; margin: 0 auto;}
 .menu_detail .img_box{width:450px; height:470px; float:left; margin-right:50px;}
@@ -42,3 +57,9 @@ dd{text-align:right; margin-bottom:15px;}
 .login form button{width:300px; background:#4C4C4C; color:white; font-size:13px; height:50px; margin-bottom:20px;}
 .login form .join_box a{color:gray; font-size:12px;}
 .login form .join_box{color:gray; font-size:12px; text-align:center;}
+
+.join form{margin:0 auto; width:300px; height:500px; padding:30px;}
+.join form p{font-size:24px; font-weight:500; margin-bottom:24px;}
+.join form input{border-bottom:1px solid gray; width:300px; margin-bottom:20px;}
+.join form input:focus { outline: none; } /* 눌렀을 때 네모난 창 없애기 */
+.join form button{width:300px; background:#4C4C4C; color:white; font-size:13px; height:50px; margin-bottom:20px;}
