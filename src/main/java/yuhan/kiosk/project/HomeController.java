@@ -58,6 +58,7 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
+		/*
 		model.addAttribute("request", request);
 		
 		String target = "";
@@ -66,8 +67,14 @@ public class HomeController {
 		service.execute(model);
 		
 		String expage = "main";
-
-		return expage;
+		 */
+		
+		model.addAttribute("request", request); //null, coffee_menu, non_coffee_menu, dessert_menu
+		
+		service = new MenuListService();
+		service.execute(model);
+		
+		return "main"; //main.jsp
 	}
 
 }

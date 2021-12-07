@@ -47,7 +47,23 @@ public class MenuDao {
 									new BeanPropertyRowMapper<MenuDto>(MenuDto.class));
 		
 		return dto;
+	}	
+	
+	public ArrayList<ListFormDto> CupSize() {
+		
+		//String sql = "select seq, name, value from list_form WHERE name = " + "cup_size";
+		String sql = "select seq, name, value from list_form WHERE name = '" + "cup_size" + "'";
+		
+		ArrayList<ListFormDto> dtos = (ArrayList<ListFormDto>) template.query(sql, new BeanPropertyRowMapper<ListFormDto>(ListFormDto.class));
+		return dtos;
 	}
 	
-	
+	public ArrayList<ListFormDto> CupChoice() {
+		
+		//String sql = "select seq, name, value from list_form WHERE name = " + "cup_choice";
+		String sql = "select seq, name, value from list_form WHERE name = '" + "cup_choice" + "'";
+		
+		ArrayList<ListFormDto> dtos = (ArrayList<ListFormDto>) template.query(sql, new BeanPropertyRowMapper<ListFormDto>(ListFormDto.class));
+		return dtos;
+	}
 }

@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,6 +18,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
+import yuhan.kiosk.dto.MemberDto;
 import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 
@@ -102,5 +104,32 @@ public class MemberDao {
 		}
 		
 		return check;
+	}
+
+	public int MemberSession(String id, String password) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int member_seq = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "select seq from member where id = ? and password = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			
+			//check = "틀림";
+			if(rs.next()) {
+				member_seq = rs.getInt("seq");
+			}
+			
+		} catch (Exception e) {
+
+		}
+		
+		return member_seq;
 	}
 }

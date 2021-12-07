@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import yuhan.kiosk.dao.ListFormDto;
 import yuhan.kiosk.dao.MenuDao;
 import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.IKioskService;
@@ -27,7 +28,12 @@ public class MenuDetailService implements IKioskService {
 		MenuDao dao = new MenuDao();
 		MenuDto dto = dao.MenuDetail(menu_seq);
 		
+		ArrayList<ListFormDto> cup_size = dao.CupSize();
+		ArrayList<ListFormDto> cup_choice = dao.CupChoice();
+		
 		model.addAttribute("menu_detail", dto);
+		model.addAttribute("cup_size", cup_size);
+		model.addAttribute("cup_choice", cup_choice);
 	}
 
 }

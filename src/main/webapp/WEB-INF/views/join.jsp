@@ -7,7 +7,7 @@
 			<input type="text" placeholder="아이디" name="id">
 			<input type="password" placeholder="비밀번호" name="password">
 			<input type="text" placeholder="연락처" name="tel"> 
-			<button type="submit" >회원가입</button>
+			<button type="submit">회원가입</button>
 		</form>
 	</div>
 	

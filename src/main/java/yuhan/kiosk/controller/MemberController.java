@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import yuhan.kiosk.member.service.MemberJoinService;
 import yuhan.kiosk.member.service.MemberLoginService;
+import yuhan.kiosk.member.service.MemberSession;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 import yuhan.kiosk.mvc.util.IKioskService;
+import yuhan.kiosk.mvc.util.IKioskServiceInt;
 import yuhan.kiosk.mvc.util.IKioskServiceString;
 
 @Controller
@@ -22,6 +24,7 @@ public class MemberController {
 
 	IKioskService service = null; //인터페이스 선언
 	IKioskServiceString service_string = null;
+	IKioskServiceInt service_int = null;
 	
 	public JdbcTemplate template; //모든 객체에서 이용할 수 있게 템플릿 선언
 	
@@ -45,7 +48,7 @@ public class MemberController {
 		String password = request.getParameter("password");
 		
 		if(id == "") { //null 체크
-			return "<script>parent.alert('아이디를 입력해주세요.');</script>"; //if   rame은 자식요소, 부모한테 결과(alert) 넘김
+			return "<script>parent.alert('아이디를 입력해주세요.');</script>"; //iframe은 자식요소, 부모한테 결과(alert) 넘김
 		}
 		if(password == "") {
 			return "<script>parent.alert('패스워드를 입력해주세요.');</script>"; 
@@ -60,14 +63,17 @@ public class MemberController {
 			return "<script>parent.alert('아이디 또는 패스워드가 틀렸습니다.');</script>";
 		}
 		else {
+			service_int = new MemberSession();
+			int member_seq = service_int.execute(model); 
 			session.setAttribute("id", check);
+			session.setAttribute("member_seq", member_seq);
 		}
 		
 		//return "redirect:main"; //login.do 아닌 main.jsp로 그냥 main하면 url은 login.do 화면은 main
 		return "<script>parent.location.href='/project/main';</script>"; //@ResponseBody 사용하면 마크업으로 이동
 	}
 	
-	@RequestMapping("join")
+	@RequestMapping("/join")
 	public String join_view() {
 		
 		return "join";
@@ -101,7 +107,7 @@ public class MemberController {
 		return "<script>parent.alert('회원가입 되었습니다!'); parent.location.href='/project/login'; </script>";
 	}
 	
-	@RequestMapping(value="/logout", produces = "text/html; charset=UTF-8")
+	@RequestMapping(value="/logout", produces = "text/html; charset=UTF-8")//, method = RequestMethod.GET
 	public @ResponseBody String logout(HttpSession session) {
 		session.invalidate();
 		

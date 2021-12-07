@@ -38,17 +38,28 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, span, li{font-famil
 .menu_box ul::after{display:block;content:'';clear:both;}
 
 .menu_detail{clear:both; margin: 0 auto;}
+.menu_detail .content_box .option{margin-bottom:15px;}
+.menu_detail .content_box .option form div{float:left; width:500px; text-align:center; margin-bottom:10px;}
+.menu_detail .content_box .option form div p{font-size:15px; font-weight:500; float:left; width:120px; height:30px; color:white; background:#1e3932; border-radius:5px; line-height:30px;}
+.menu_detail .content_box .option form div label{display:inline-block; width:100px; height:25px; margin-right:20px;}
+.menu_detail .content_box .option form div label:nth-child(4){margin-right:0px;}
+.menu_detail .content_box .option form div label span{display:block; width:inherit; height:inherit; border:1px solid black; border-radius:5px; font-size:13px; line-height:25px;}
+.menu_detail .content_box .option form div label input[type="radio"]{display:none;}
+.menu_detail .content_box .option form div label input[type="radio"]:checked + span{border:3px solid #1e3932;} /* + 는 형제요소 선택*/
+.menu_detail .content_box .option form button{border:1px solid #1e3932; border-radius:2.5px; background:#1e3932; padding: 7px 7px; color:white; width:230px;}
 .menu_detail .img_box{width:450px; height:470px; float:left; margin-right:50px;}
 .menu_detail .img_box img{width:100%; height:100%;}
-.menu_detail .content_box{float:left; width:500px; height:470px; margin-bottom:30px;}
+.menu_detail .content_box{float:left; width:500px; margin-bottom:30px;}
 .menu_detail .content_box .name{font-weight:bold; font-size:25px;}
-.menu_detail .content_box button{border:1px solid #005000; border-radius:2.5px; background:#005000; padding: 7px 7px; color:white; width:230px;}
 .menu_detail .content_box .context{line-height:1.6;}
 .dl_box{padding-right:25px; margin-right:25px; border-right:0.5px dotted #D5D5D5;}
 .menu_detail .content_box dl{float:left; width:220px; color: #444; font-size:14px; margin-bottom:25px;}
 .menu_detail .content_box dl dt {float:left;}
 dd{text-align:right; margin-bottom:15px;}
 .menu_detail .content_box .allergy{clear:both; background:#f4f4f2; font-size:14px; padding: 13px 11px;}
+.menu_detail .img_box::after{display:block;content:'';clear:both;}
+.menu_detail .option::after{display:block;content:'';clear:both;}
+.menu_detail .content_box::after{display:block;content:'';clear:both;}
 
 .login form{margin:0 auto; width:300px; height:500px; padding:30px;}
 .login form p{font-size:24px; font-weight:500; margin-bottom:24px;}

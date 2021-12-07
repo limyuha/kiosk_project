@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%
 	java.util.Date today = new java.util.Date(); //현재 날짜(변하는 값) //css수정 시 빠르게 보려고
-	
-	String id = (String)session.getAttribute("id");  // 세션 값 가져오기
 %>
 <!DOCTYPE html>
 <html>
@@ -37,12 +35,12 @@
 			<li><a href="main?target=dessert_menu">Dessert</a></li>
 		</ul>
 		<c:choose>
-			<c:when test="${id == null}"> <!-- if -->
+			<c:when test="${id == null}"> <!-- if, 세션에 저장되어 있는 id -->
 				<p><a href="login"><i class="fas fa-sign-in-alt"></i> LOGIN</a></p>
 			</c:when>
 			<c:otherwise> <!-- else -->
 				
-				<p><a href="cart">장바구니</a> | <%= id%>님 | <a href="logout"> LOGOUT</a></p>
+				<p><a href="cart">장바구니</a> | ${id}님 | <a href="logout"> LOGOUT</a></p>
 			</c:otherwise>
 		</c:choose>
 	</div>
