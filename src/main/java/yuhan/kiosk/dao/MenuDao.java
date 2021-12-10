@@ -26,7 +26,6 @@ public class MenuDao {
 		//String target = "";
 		//String sql = "select * from menu";
 		
-		
 		if(target.equals("coffee_menu")) { // == 은 주소값(자료의 위치값) 비교, equals는 객체끼리 내용 비교
 			sql = "select menu.seq, menu.name, menu.price, menu_img.img_url from menu, menu_img where menu.category = 1 and menu.seq = menu_img.menu_seq";
 		} else if (target.equals("non_coffee_menu")) {

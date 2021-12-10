@@ -4,7 +4,8 @@
 	int menu_seq = Integer.parseInt(request.getParameter("menu_seq")); 
 %>
 	<jsp:include page="top.jsp" flush="false"/>
-	
+	${id} 
+	${member_seq}
 	<div class="menu_detail width_1000">
 		<div class="img_box">
 			<img src="${menu_detail.img_url}">
@@ -15,7 +16,7 @@
 				<hr style="border:0px; height:1px; background:black; margin-bottom:12px;">
 				<div class="option">
 					<form name="option" action="cart.do?menu_seq=<%=menu_seq%>" method="post" target="actionFrame">
-					<input type="hidden" name="id" value="${member_seq}">
+					<input type="hidden" name="member_seq" value="${member_seq}">
 						<div>
 							<p>SIZE</p>
 							<c:forEach items="${cup_size}" var="dtos" varStatus="status">

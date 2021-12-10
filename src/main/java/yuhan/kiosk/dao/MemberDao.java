@@ -107,29 +107,10 @@ public class MemberDao {
 	}
 
 	public int MemberSession(String id, String password) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int member_seq = 0;
-		
-		try {
-			conn = dataSource.getConnection();
-			String sql = "select seq from member where id = ? and password = ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
-			
-			//check = "틀림";
-			if(rs.next()) {
-				member_seq = rs.getInt("seq");
-			}
-			
-		} catch (Exception e) {
+	
+		String sql = "select seq from member where id = '" + id + "' and password = '" + password + "'";
+		return template.queryForObject(sql, Integer.class);
 
-		}
-		
-		return member_seq;
+		//return this.template.queryForInt(sql); => 더 이상 사용할 수 없음
 	}
 }

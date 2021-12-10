@@ -63,8 +63,9 @@ public class MemberController {
 			return "<script>parent.alert('아이디 또는 패스워드가 틀렸습니다.');</script>";
 		}
 		else {
-			service_int = new MemberSession();
-			int member_seq = service_int.execute(model); 
+			service_int = new MemberSession(); //멤버 seq
+			int member_seq = service_int.execute(model);
+					
 			session.setAttribute("id", check);
 			session.setAttribute("member_seq", member_seq);
 		}
