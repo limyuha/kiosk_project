@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import yuhan.kiosk.cart.service.CartAllDeleteService;
+import yuhan.kiosk.cart.service.CartDeleteService;
 import yuhan.kiosk.cart.service.CartDetailService;
 import yuhan.kiosk.cart.service.CartInsertService;
 import yuhan.kiosk.cart.service.EaUpDownService;
@@ -72,7 +74,6 @@ public class CartController {
 		return "cart";
 	}
 	
-	
 	@RequestMapping(value="/updwon", method = RequestMethod.POST, produces = "text/html; charset=UTF-8") //ajax 사용하려면 @ResponseBody 필요
 	public @ResponseBody String ea_updown(Model model, HttpServletRequest request) {
 
@@ -82,5 +83,26 @@ public class CartController {
 		service.execute(model);
 		
 		return "수량 변경";
+	}
+	
+	@RequestMapping(value="/cart_delete", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
+	public @ResponseBody String cart_delete(Model model, HttpServletRequest request) {
+		
+		model.addAttribute("request", request); //member_seq
+		
+		service = new CartDeleteService();
+		service.execute(model);
+		
+		return "<script>parent.alert('장바구니에서 삭제되었습니다.'); parent.location.reload();</script>";
+	}
+	
+	@RequestMapping(value="/cart_all_delete", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
+	public @ResponseBody String cart_all_delete(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request); //member_seq
+		
+		service = new CartAllDeleteService();
+		service.execute(model);
+		
+		return "<script>parent.alert('장바구니를 비웠습니다.'); parent.location.reload();</script>";
 	}
 }

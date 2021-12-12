@@ -1,4 +1,4 @@
-package yuhan.kiosk.dao;
+package yuhan.kiosk.dto;
 
 public class ListFormDto {
 	private int seq;

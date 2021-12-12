@@ -1,25 +1,17 @@
 package yuhan.kiosk.dao;
 
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
-import yuhan.kiosk.dto.MemberDto;
-import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 
 public class MemberDao {
@@ -42,7 +34,6 @@ public class MemberDao {
 	
 	
 	public String MemberJoin(final String id, final String password, final String tel) {
-		final Date date = new Date(System.currentTimeMillis()); //시분초까지 사용하려면 java.util.Date 사용
 		String check = null;
 		
 		Connection conn = null;
@@ -57,7 +48,7 @@ public class MemberDao {
 			if(rs.next()) {
 				check = "아이디중복";
 			} else {
-				sql = "insert into member(id, password, tel, date) values(?, ?, ?, ?)";
+				sql = "insert into member(id, password, tel, date) values(?, ?, ?, now())";
 				this.template.update(sql, new PreparedStatementSetter() {
 
 					@Override
@@ -65,7 +56,6 @@ public class MemberDao {
 						ps.setString(1, id);
 						ps.setString(2, password);
 						ps.setString(3, tel); //ps.setInt(3, Integer.parseInt(tel));
-						ps.setDate(4, date);
 					}
 				});
 			}

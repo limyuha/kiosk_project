@@ -4,9 +4,8 @@
 	int menu_seq = Integer.parseInt(request.getParameter("menu_seq")); 
 %>
 	<jsp:include page="top.jsp" flush="false"/>
-	${id} 
-	${member_seq}
-	<div class="menu_detail width_1000">
+
+	<div class="menu_detail width_1000 height_735">
 		<div class="img_box">
 			<img src="${menu_detail.img_url}">
 		</div>

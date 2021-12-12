@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import yuhan.kiosk.dao.ListFormDto;
 import yuhan.kiosk.dao.MenuDao;
+import yuhan.kiosk.dto.ListFormDto;
 import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.IKioskService;
 

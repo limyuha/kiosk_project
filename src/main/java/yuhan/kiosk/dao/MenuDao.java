@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import yuhan.kiosk.dto.ListFormDto;
 import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 

@@ -4,25 +4,25 @@
 
 	<jsp:include page="top.jsp" flush="false"/>	
 	
-	<div class="cart_box">
+	<div class="cart_box height_735">
 		<div class="header">
-			<p>장바구니 <button><i class="far fa-trash-alt"></i></button></p>
+			<p>장바구니 <a href="cart_all_delete?member_seq=${member_seq}" target="actionFrame"><i class="far fa-trash-alt"></i></a></p>
 		</div>
 		
 		<ul>
 			<c:forEach items="${cart}" var="dtos" varStatus="status">
-				<script type="text/javascript">
-					var eaa = '<c:out value="${ea}" escapeXml="false" default="${dtos.ea}"/>';
-				</script>
-			
 				<li>
 					<div class="img_box">
 						<img src="${dtos.img_url}">
 					</div>
 					
+					<div class="delete_box">
+						<a href="cart_delete?cart_seq=${dtos.seq}" target="actionFrame"><i class="fas fa-times"></i></a>
+					</div>
+					
 					<div class="cart_detail">
-						<p class="name"><c:out value="${dtos.name}"/>  ${dtos.seq}</p>
-						<p><c:out value="${dtos.cup_size}"/> | <c:out value="${dtos.cup_choice}"/><span class="price_box price"><fmt:formatNumber value="${dtos.price}" pattern="#,###"/></span>원</p>
+						<p class="name"><c:out value="${dtos.name}"/></p>
+						<p><c:out value="${dtos.cup_size}"/> | <c:out value="${dtos.cup_choice}"/><span class="price_box"><span class="price"><fmt:formatNumber value="${dtos.price}" pattern="#,###"/></span>원</span></p>
 						
 						<p class="box">
 							<button type="button" class="down" data-seq="${dtos.seq}"><i class="fas fa-minus-circle"></i></button>
@@ -41,9 +41,14 @@
 				<span class="menu_sum">총 0건</span>
 				<span class="sum">0원</span>
 			</p>
-			<button>주문하기</button>
+			<form method="post" action="order?member_seq=${member_seq}" target="actionFrame">
+				<input type="hidden" name="sum" value="0">
+				<button>주문하기</button>
+			</form>
 		</div>
 	</div>
+	
+	<iframe name="actionFrame" src="" frameborder="0" width="0" height="0" ></iframe>
 	
 	<jsp:include page="footer.jsp" flush="false"/>
 <script>
@@ -71,8 +76,10 @@
 		
 		$('.cart_box .sum').html(comma(sum)+"원");
 		$('.cart_box .menu_sum').html("총 "+menu_sum+"건");
-	
+		
+		$('.cart_box input').val(sum); //value 값 변경
 	}
+	
 	function comma(v) {
 		return v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -114,4 +121,6 @@
 			});
 		});
 	});
+	
+	
 </script>

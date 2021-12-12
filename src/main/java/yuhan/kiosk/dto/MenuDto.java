@@ -1,5 +1,7 @@
 package yuhan.kiosk.dto;
 
+import java.util.ArrayList;
+
 public class MenuDto {
 	
 	//menu table
@@ -20,6 +22,9 @@ public class MenuDto {
 	//menu_img table
 	private int menu_seq;
 	private String img_url;
+	
+	//test
+	private ArrayList<MenuDto> item;
 	
 	//생성자 필요
 	public MenuDto() {
@@ -170,6 +175,15 @@ public class MenuDto {
 
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
+	}
+
+	public ArrayList<MenuDto> getItem() {
+		return item;
+	}
+
+	public void setItem(ArrayList<MenuDto> item) {
+		this.item = item;
+	
 	}
 
 }

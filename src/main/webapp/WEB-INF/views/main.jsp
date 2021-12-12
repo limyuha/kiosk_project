@@ -17,5 +17,3 @@
 			</c:forEach>
 		</ul>
 	</div>
-	
-	<jsp:include page="footer.jsp" flush="false"/>

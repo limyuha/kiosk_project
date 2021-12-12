@@ -8,6 +8,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, span, li{font-famil
 .width_1300{width:1300px;}
 .width_1200{width:1200px;}
 .width_1000{width:1000px;}
+.height_735{height:735px;}
 
 /*
 .top_box{margin:0 auto; height:80px; position:relative; background:#f6f5ef; margin-bottom:40px; position:relative;}
@@ -23,7 +24,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, a, p, span, li{font-famil
 .top_box .gnb ul{display:inline-block;height:inherit;} 
 .top_box .gnb ul li{float:left;height:inherit;padding:0 25px;}
 .top_box .gnb ul li a{color:black; font-weight:bold; font-size:17px;}
-.top_box .gnb p{position:absolute; top:13px; right:0px; line-height:0px; font-size:15px;}
+.top_box .gnb p{position:absolute; top:13px; right:0px; line-height:0px; font-size:12px;}
 .top_box .gnb p a{color:black;}
 
 .menu_box{width:100%;}
@@ -75,14 +76,16 @@ dd{text-align:right; margin-bottom:15px;}
 .join form input:focus { outline: none; } /* 눌렀을 때 네모난 창 없애기 */
 .join form button{width:300px; background:#4C4C4C; color:white; font-size:13px; height:50px; margin-bottom:20px;}
 
-.cart_box{width:500px; margin: 0 auto;}
+.cart_box{width:500px; margin: 0 auto; height:700px;}
 .cart_box .header{width:inherit; height:50px; background:#2C2A29; position:relative;}
 .cart_box .header p{color:white; font-size:24px; padding-top:5px; padding-left:15px; font-weight:500;}
-.cart_box .header p button{font:caption; position:absolute; top:16px; right:15px; cursor:pointer;}
-.cart_box .header p button i{font-size:24px; color:white;}
-.cart_box ul li{border-bottom:1px solid #BDBDBD;}
+.cart_box .header p a{font:caption; position:absolute; top:16px; right:15px; cursor:pointer;}
+.cart_box .header p a i{font-size:20px; color:white;}
+.cart_box ul li{border-bottom:1px solid #BDBDBD; position:relative;}
 .cart_box ul li .img_box{width:130px; height:130px; border-radius:70%; overflow: hidden; float:left; margin:10px;}
 .cart_box ul li .img_box img{width:100%; height:100%;}
+.cart_box ul li .delete_box{position:absolute; top:4px; right:12px;}
+.cart_box ul li .delete_box i{font-size:20px; color:#8C8C8C; cursor:pointer;}
 .cart_box ul li .cart_detail{width:310px; height:110px; float:left; padding:20px; line-height:1.9;}
 .cart_box ul li .cart_detail p{font-size:15px; font-weight:400; color:#8C8C8C; }
 .cart_box ul li .cart_detail .name{font-size:24px; font-weight:500; color:black;}
@@ -94,9 +97,22 @@ dd{text-align:right; margin-bottom:15px;}
 .cart_box .order_box p{padding:15px; margin-bottom:10px;}
 .cart_box .order_box p .menu_sum{font-size:18px; color:#BD9424;}
 .cart_box .order_box p .sum{font-size:24px; font-weight:500; float:right;}
-.cart_box .order_box button{width:400px; height:50px; color:white; background:#1e3932; display:block; margin:0 auto; border-radius:30px;}
-
+.cart_box .order_box form button{width:400px; height:50px; color:white; background:#1e3932; display:block; margin:0 auto; border-radius:30px; cursor:pointer;}
 .cart_box ul li::after{display:block;content:'';clear:both;}
 
+.order_box{width:500px; margin: 0 auto;}
+.order_box .header{width:inherit; height:50px; background:#2C2A29; position:relative;}
+.order_box .header p{color:white; font-size:24px; padding-top:5px; padding-left:15px; font-weight:500;}
+.order_box ul li .order_header{font-size:18px; font-weight:500; padding:10px; background:#670000; color:#BDBDBD;}
+.order_box ul li .sum_box{float:right;}
+.order_box ul li ul li{border-bottom:1px solid #BDBDBD;}
+.order_box ul li ul li a .img_box{width:130px; height:130px; border-radius:70%; overflow: hidden; float:left; margin:10px;}
+.order_box ul li ul li a .img_box img{width:100%; height:100%;}
+.order_box ul li ul li a .order_detail_box{width:310px; height:110px; float:left; padding:20px; line-height:1.0;}
+.order_box ul li ul li a .order_detail_box .price_box{float:right;}
+.order_box ul li ul li a .order_detail_box .name{font-size:18px; font-weight:500; color:black;}
+.order_box ul li ul li a .order_detail_box p{font-size:15px; font-weight:400; color:#8C8C8C; padding:10px 0px;}
+.order_box ul li ul li a .order_detail_box .ea{font-size:18px; font-weight:500; color:black;}
+.order_box ul li::after{display:block;content:'';clear:both;}
 
-
+.footer_box{width:100%; height:150px; background:#2C2A29; margin-top:100px; color:white; text-align:center; line-height:150px; font-size:25px; font-weight:500;}

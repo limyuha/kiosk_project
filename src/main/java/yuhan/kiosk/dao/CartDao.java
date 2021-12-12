@@ -2,20 +2,16 @@ package yuhan.kiosk.dao;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.dao.support.DataAccessUtils;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
-import yuhan.kiosk.dto.CartDto;
 import yuhan.kiosk.dto.MenuCartDto;
-import yuhan.kiosk.dto.MenuDto;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 
 public class CartDao {
@@ -28,7 +24,7 @@ public class CartDao {
 
 	public String CartInsert(final String member_seq, final String menu_seq, final String cup_size, final String cup_choice) {
 		
-		final Date date = new Date(System.currentTimeMillis());
+		final Date date = new Date(System.currentTimeMillis()); //시분초까지 사용하려면 java.util.Date 사용 또는 now()
 		String sql = "select ea from cart where member_seq = '" + member_seq + "'and menu_seq = '" + menu_seq +"'and cup_size = '" + cup_size + "'and cup_choice = '" + cup_choice + "' " ;
 
 		try {
@@ -51,8 +47,6 @@ public class CartDao {
 			return "수량 추가";
 			
 		} catch (EmptyResultDataAccessException e) { //결과값이 0 또는 1이상일 때 에러나기 때문에 잡아주기 , null 처리
-			System.out.println("값이 없다!");
-			
 			sql = "insert into cart(member_seq, menu_seq, cup_size, cup_choice, ea, date)"
 					+ "values(?, ?, ?, ?, ?, ?)";
 			
@@ -95,5 +89,31 @@ public class CartDao {
 			}
 		});
 		System.out.println("수량 변경");
+	}
+
+	public void CartDelete(final String cart_seq) {
+		String sql = "delete from cart where seq = ?";
+		
+		this.template.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1,  Integer.parseInt(cart_seq));
+			}
+		});
+		System.out.println("음료 삭제");
+	}
+
+	public void CartAllDelete(final String member_seq) {
+		String sql = "delete from cart where member_seq = ?";
+		
+		this.template.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1,  Integer.parseInt(member_seq));
+			}
+		});
+		System.out.println("회원 장바구니 비우기");
 	}
 }

@@ -40,7 +40,7 @@
 			</c:when>
 			<c:otherwise> <!-- else -->
 				
-				<p><a href="cart?member_seq=${member_seq}">장바구니</a> | ${id}님 | <a href="logout"> LOGOUT</a></p>
+				<p>${id}님 | <a href="cart?member_seq=${member_seq}">장바구니</a> | <a href="kiosk_order?member_seq=${member_seq}"> 주문내역</a> | <a href="logout"> LOGOUT</a></p>
 			</c:otherwise>
 		</c:choose>
 	</div>
