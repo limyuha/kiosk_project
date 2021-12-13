@@ -133,4 +133,9 @@ public class OrderDao {
 		
 		return order_sub_dtos;
 	}
+
+	public void OrderBtn(String member_seq, String menu_seq, String cup_size, String cup_choice) {
+		
+		
+	}
 }

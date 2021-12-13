@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<jsp:include page="top.jsp" flush="false"/>
 	
-	<div class="join">
+	<div class="join height_735">
 		<form name="join" method="post" action="join.do" target="actionFrame">
 			<p>JOIN</p>
 			<input type="text" placeholder="아이디" name="id">

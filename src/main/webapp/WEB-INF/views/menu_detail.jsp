@@ -14,7 +14,7 @@
 			<p class="name">${menu_detail.name}</p>
 				<hr style="border:0px; height:1px; background:black; margin-bottom:12px;">
 				<div class="option">
-					<form name="option" action="cart.do?menu_seq=<%=menu_seq%>" method="post" target="actionFrame">
+					<form name="option" action="cart.do?menu_seq=<%=menu_seq%>" method="post" target="actionFrame" id="order_form">
 					<input type="hidden" name="member_seq" value="${member_seq}">
 						<div>
 							<p>SIZE</p>
@@ -29,7 +29,8 @@
 							</c:forEach>
 						</div> 
 						
-						<button type="button" target="option" onclick="" style="margin-right:36px;">주문하기</button>
+						
+						<button type="button" class="order" style="margin-right:36px;">주문하기</button>
 						<button type="submit">장바구니</button>
 					</form>
 				</div>
@@ -69,5 +70,21 @@
 	$(function(){
 		$('input:radio[name=cup_size]').eq(0).attr("checked", true);
 		$('input:radio[name=cup_choice]').eq(0).attr("checked", true);
+	});
+	
+	$('.order').click(function() {
+		var menu_seq = '<%=menu_seq%>';
+		var that = $(this);	
+		$.ajax({
+			url : '/project/order_btn',
+			type : 'post',
+			data : $('#order_form').serialize() + '&menu_seq=' + menu_seq,
+			success : function(check) {
+				alert("주문이 완료되었습니다. \n결제는 카운터에서 해주세요.");
+			},
+			error : function(check) {
+				console.log(check);
+			}
+		});
 	});
 </script>

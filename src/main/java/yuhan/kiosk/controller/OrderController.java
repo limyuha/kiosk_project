@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import yuhan.kiosk.mvc.util.ConstantTemplate;
 import yuhan.kiosk.mvc.util.IKioskService;
 import yuhan.kiosk.mvc.util.IKioskServiceString;
+import yuhan.kiosk.order.service.OrderBtnService;
 import yuhan.kiosk.order.service.OrderService;
 import yuhan.kiosk.order.service.OrderViewService;
 
@@ -32,6 +33,17 @@ public class OrderController {
 		ConstantTemplate.template = this.template;
 	}
 	
+	@RequestMapping(value="/order_btn", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
+	public @ResponseBody String order_btn(Model model, HttpServletRequest request) {
+		
+		model.addAttribute("request", request); 
+		
+		service = new OrderBtnService();
+		service.execute(model);
+		
+		return "";
+	}
+
 	@RequestMapping(value="/order", method = RequestMethod.POST, produces = "text/html; charset=UTF-8")
 	public @ResponseBody String cart_all_delete(Model model, HttpServletRequest request) {
 

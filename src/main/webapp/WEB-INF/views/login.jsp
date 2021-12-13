@@ -2,7 +2,7 @@
 <% String msg = request.getParameter("msg"); //사용 x %>
 	<jsp:include page="top.jsp" flush="false"/>
 	
-	<div class="login">
+	<div class="login height_735">
 		<form name="login" method="post" action="login.do" target="actionFrame"><!-- 포커스를 target="iframe" 으로 넘김 -->
 			<p>LOGIN</p>
 			<input type="text" placeholder="아이디" name="id">
